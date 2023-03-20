@@ -41,8 +41,78 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+          ),drawerEnableOpenDragGesture: true,
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: CircleAvatar(
+                    child: Image.asset('assets/img/aditya1.png'),
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    'Home',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  leading: Icon(
+                    Icons.home,
+                    color: Colors.blue,
+                  ),
+                  onTap: () {
+                    // Add your onTap code here
+                    print('Home ListTile was tapped!');
+                  },
+                ),
+
+                ListTile(
+                  title: Text(
+                    'Share',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  leading: Icon(
+                    Icons.share,
+                    color: Colors.blue,
+                  ),
+                  onTap: () {
+                    // Add your onTap code here
+                    print('share ListTile was tapped!');
+                  },
+                )
+                ,
+                ListTile(
+                  title: Text(
+                    'Settings',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  leading: Icon(
+                    Icons.settings,
+                    color: Colors.blue,
+                  ),
+                  onTap: () {
+                    // Add your onTap code here
+                    print('Settings ListTile was tapped!');
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    'Contact us',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  leading: Icon(
+                    Icons.add_call,
+                    color: Colors.blue,
+                  ),
+                  onTap: () {
+                    // Add your onTap code here
+                    print('contact us ListTile was tapped!');
+                  },
+                )
+                ,
+              ],
+            ),
           ),
-          body: SingleChildScrollView(
+          body:  SingleChildScrollView(
               child: Column(children: [
             Text(
               'NBA',
