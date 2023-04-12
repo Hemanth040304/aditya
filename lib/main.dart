@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter/services.dart';
 import 'Dept.dart';
 import 'Principal.dart';
-
-
+import 'package:native_pdf_view/native_pdf_view.dart';
+import 'package:aditya/pdfView.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-         home: HomePage(),
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    ));
+  });
 }
 
 class HomePage extends StatefulWidget {
@@ -18,102 +23,107 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isFirstCard =false;
-  bool _isSecondCard =false;
-  bool _isThirdCard =false;
+  bool _isFirstCard = false;
+  bool _isSecondCard = false;
+  bool _isThirdCard = false;
+  final pdfController = PdfController(
+    document: PdfDocument.openAsset('assets/img/aec_pri.pdf'),
+  );
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    double hi = MediaQuery.of(context).size.height;
+    double wi = MediaQuery.of(context).size.width;
+    double pd = MediaQuery.of(context).size.height * 0.03;
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blue,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Image.asset(
-                  'assets/img/aec.png',
-                  height: 210,
-                  width: 210,
-                ),
-              ],
-            ),
-          ),drawerEnableOpenDragGesture: true,
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                DrawerHeader(
-                  child: CircleAvatar(
-                    child: Image.asset('assets/img/aditya1.png'),
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    'Home',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                  leading: Icon(
-                    Icons.home,
-                    color: Colors.blue,
-                  ),
-                  onTap: () {
-                    // Add your onTap code here
-                    print('Home ListTile was tapped!');
-                  },
-                ),
-
-                ListTile(
-                  title: Text(
-                    'Share',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                  leading: Icon(
-                    Icons.share,
-                    color: Colors.blue,
-                  ),
-                  onTap: () {
-                    // Add your onTap code here
-                    print('share ListTile was tapped!');
-                  },
-                )
-                ,
-                ListTile(
-                  title: Text(
-                    'Settings',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                  leading: Icon(
-                    Icons.settings,
-                    color: Colors.blue,
-                  ),
-                  onTap: () {
-                    // Add your onTap code here
-                    print('Settings ListTile was tapped!');
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    'Contact us',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                  leading: Icon(
-                    Icons.add_call,
-                    color: Colors.blue,
-                  ),
-                  onTap: () {
-                    // Add your onTap code here
-                    print('contact us ListTile was tapped!');
-                  },
-                )
-                ,
-              ],
-            ),
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 10,
+              ),
+              Image.asset(
+                'assets/img/aec.png',
+                height: 210,
+                width: 210,
+              ),
+            ],
           ),
-          body:  SingleChildScrollView(
-              child: Column(children: [
+        ),
+        drawerEnableOpenDragGesture: true,
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: CircleAvatar(
+                  child: Image.asset('assets/img/aditya1.png'),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Home',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                leading: Icon(
+                  Icons.home,
+                  color: Colors.blue,
+                ),
+                onTap: () {
+                  // Add your onTap code here
+                  print('Home ListTile was tapped!');
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Share',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                leading: Icon(
+                  Icons.share,
+                  color: Colors.blue,
+                ),
+                onTap: () {
+                  // Add your onTap code here
+                  print('share ListTile was tapped!');
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Settings',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.blue,
+                ),
+                onTap: () {
+                  // Add your onTap code here
+                  print('Settings ListTile was tapped!');
+                },
+              ),
+              ListTile(
+                title: Text(
+                  'Contact us',
+                  style: TextStyle(color: Colors.blue),
+                ),
+                leading: Icon(
+                  Icons.add_call,
+                  color: Colors.blue,
+                ),
+                onTap: () {
+                  // Add your onTap code here
+                  print('contact us ListTile was tapped!');
+                },
+              ),
+            ],
+          ),
+        ),
+        body: ListView(padding: EdgeInsets.all(pd), children: [
+          Column(children: [
             Text(
               'NBA',
               style: TextStyle(
@@ -125,14 +135,12 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10,
             ),
-
             GestureDetector(
               onTap: () {
                 setState(() {
-                  _isFirstCard=true;
-                  _isSecondCard=false;
-                  _isThirdCard=false;
-
+                  _isFirstCard = true;
+                  _isSecondCard = false;
+                  _isThirdCard = false;
                 });
               },
               child: Container(
@@ -142,8 +150,8 @@ class _HomePageState extends State<HomePage> {
                   shadowColor: Colors.black,
                   color: _isFirstCard ? Colors.blue : Colors.white,
                   child: SizedBox(
-                    width: 345,
-                    height: 345,
+                    width: wi / 1.25,
+                    height: hi / 2.5,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -160,7 +168,8 @@ class _HomePageState extends State<HomePage> {
                             'About',
                             style: TextStyle(
                               fontSize: 25,
-                              color: _isFirstCard ? Colors.white : Colors.black54,
+                              color:
+                                  _isFirstCard ? Colors.white : Colors.black54,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -171,7 +180,8 @@ class _HomePageState extends State<HomePage> {
                             'The 200 acres huge lush green campus and an eco friendly area us situated at Surampalem.',
                             style: TextStyle(
                               fontSize: 15,
-                              color: _isFirstCard ? Colors.white : Colors.black45,
+                              color:
+                                  _isFirstCard ? Colors.white : Colors.black45,
                             ),
                           ),
                           const SizedBox(
@@ -184,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>VideoApp(),
+                                    builder: (context) => VideoApp(),
                                   ),
                                 );
                               },
@@ -198,13 +208,16 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     'Read More',
                                     style: TextStyle(
-                                      color:
-                                      _isFirstCard ? Colors.blue : Colors.white,
+                                      color: _isFirstCard
+                                          ? Colors.blue
+                                          : Colors.white,
                                     ),
                                   ),
                                   Icon(
                                     Icons.arrow_right_outlined,
-                                    color: _isFirstCard ? Colors.blue : Colors.white,
+                                    color: _isFirstCard
+                                        ? Colors.blue
+                                        : Colors.white,
                                   ),
                                 ],
                               ),
@@ -225,9 +238,9 @@ class _HomePageState extends State<HomePage> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      _isFirstCard=false;
-                      _isSecondCard=true;
-                      _isThirdCard=false;
+                      _isFirstCard = false;
+                      _isSecondCard = true;
+                      _isThirdCard = false;
                     });
                   },
                   child: Container(
@@ -237,8 +250,8 @@ class _HomePageState extends State<HomePage> {
                       shadowColor: Colors.black,
                       color: _isSecondCard ? Colors.orange : Colors.white,
                       child: SizedBox(
-                        width: 345,
-                        height: 345,
+                        width: wi / 1.25,
+                        height: hi / 2.5,
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Column(
@@ -246,7 +259,9 @@ class _HomePageState extends State<HomePage> {
                               Icon(
                                 Icons.newspaper,
                                 size: 40,
-                                color: _isSecondCard ? Colors.white : Colors.orange,
+                                color: _isSecondCard
+                                    ? Colors.white
+                                    : Colors.orange,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -255,8 +270,9 @@ class _HomePageState extends State<HomePage> {
                                 'Principal Presentation',
                                 style: TextStyle(
                                   fontSize: 25,
-                                  color:
-                                  _isSecondCard ? Colors.white : Colors.black54,
+                                  color: _isSecondCard
+                                      ? Colors.white
+                                      : Colors.black54,
                                   fontWeight: FontWeight.w500,
                                 ), // TextStyle
                               ),
@@ -269,8 +285,9 @@ class _HomePageState extends State<HomePage> {
                                 'Principal Presentation.',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color:
-                                  _isSecondCard ? Colors.white : Colors.black45,
+                                  color: _isSecondCard
+                                      ? Colors.white
+                                      : Colors.black45,
                                 ),
 // TextStyle
                               ), // Text
@@ -284,15 +301,14 @@ class _HomePageState extends State<HomePage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute<dynamic>(
-                                        builder: (_) => const PDFViewerFromUrl(
-                                          url: 'https://aec.edu.in/Academic_Regulations/1.%20AR20%20B.Tech%20Academic%20Regulations.pdf',
-                                        ),
-                                      ),
+                                          builder: (_) => MyPdf()),
                                     );
                                   },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
-                                      _isSecondCard ? Colors.white : Colors.orange,
+                                      _isSecondCard
+                                          ? Colors.white
+                                          : Colors.orange,
                                     ),
                                   ),
                                   child: Row(
@@ -307,7 +323,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       Icon(
                                         Icons.arrow_right_outlined,
-                                        color:_isSecondCard
+                                        color: _isSecondCard
                                             ? Colors.orange
                                             : Colors.white,
                                       ),
@@ -329,9 +345,9 @@ class _HomePageState extends State<HomePage> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isFirstCard=false;
-                        _isSecondCard=false;
-                        _isThirdCard=true;
+                        _isFirstCard = false;
+                        _isSecondCard = false;
+                        _isThirdCard = true;
                       });
                     },
                     child: Container(
@@ -341,8 +357,8 @@ class _HomePageState extends State<HomePage> {
                         shadowColor: Colors.black,
                         color: _isThirdCard ? Colors.red : Colors.white,
                         child: SizedBox(
-                          width: 345,
-                          height: 345,
+                          width: wi / 1.25,
+                          height: hi / 2.5,
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(
@@ -350,7 +366,8 @@ class _HomePageState extends State<HomePage> {
                                 Icon(
                                   Icons.apartment_sharp,
                                   size: 40,
-                                  color: _isThirdCard ? Colors.white : Colors.red,
+                                  color:
+                                      _isThirdCard ? Colors.white : Colors.red,
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -359,8 +376,9 @@ class _HomePageState extends State<HomePage> {
                                   'Departments',
                                   style: TextStyle(
                                     fontSize: 25,
-                                    color:
-                                    _isThirdCard ? Colors.white : Colors.black54,
+                                    color: _isThirdCard
+                                        ? Colors.white
+                                        : Colors.black54,
                                     fontWeight: FontWeight.w500,
                                   ), // TextStyle
                                 ),
@@ -373,8 +391,9 @@ class _HomePageState extends State<HomePage> {
                                   'Departments',
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color:
-                                    _isThirdCard ? Colors.white : Colors.black45,
+                                    color: _isThirdCard
+                                        ? Colors.white
+                                        : Colors.black45,
                                   ),
 // TextStyle
                                 ), // Text
@@ -384,15 +403,20 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(
                                   width: 125,
                                   child: ElevatedButton(
-                                    onPressed: () {Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DeptPage(),
-                                      ),
-                                    ); },
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => DeptPage(),
+                                        ),
+                                      );
+                                    },
                                     style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(
-                                        _isThirdCard ? Colors.white : Colors.red,
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        _isThirdCard
+                                            ? Colors.white
+                                            : Colors.red,
                                       ),
                                     ),
                                     child: Row(
@@ -425,15 +449,12 @@ class _HomePageState extends State<HomePage> {
                 ]),
               ],
             ),
-          ]
-              )
-          )
+          ])
+        ]),
       ),
     );
   }
 }
-
-
 
 class VideoApp extends StatefulWidget {
   const VideoApp({Key? key}) : super(key: key);
@@ -448,8 +469,7 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'http://acet.ac.in/nba/assets/Technicalhub/videos/ACET%20final%202.mp4')
+    _controller = VideoPlayerController.asset('assets/img/aditya.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
@@ -487,25 +507,23 @@ class _VideoAppState extends State<VideoApp> {
         body: Center(
           child: _controller.value.isInitialized
               ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
-                child: VideoPlayer(_controller),
-              ),
-              SizedBox(height: 10),
-
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                )
               : Container(),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
               _controller.value.isPlaying
-              ? _controller.pause()
+                  ? _controller.pause()
                   : _controller.play();
-
             });
           },
           child: Icon(
@@ -522,14 +540,3 @@ class _VideoAppState extends State<VideoApp> {
     _controller.dispose();
   }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'EEPDB.dart';
 import 'EEPdf.dart';
 
-
-
 class SAR extends StatelessWidget {
   const SAR({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double hi = MediaQuery.of(context).size.height;
+    double wi = MediaQuery.of(context).size.width;
+    double pd = MediaQuery.of(context).size.height * 0.03;
     return Scaffold(
         appBar: AppBar(
           title: Row(
@@ -37,7 +38,10 @@ class SAR extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => EEPdf(url: 'https://aec.edu.in/Academic_Regulations/1.%20AR20%20B.Tech%20Academic%20Regulations.pdf',),
+                        builder: (context) => EEPdf(
+                          url:
+                              'https://aec.edu.in/Academic_Regulations/1.%20AR20%20B.Tech%20Academic%20Regulations.pdf',
+                        ),
                       ));
                 },
                 child: Card(
@@ -45,8 +49,8 @@ class SAR extends StatelessWidget {
                   shadowColor: Colors.black,
                   color: Colors.white,
                   child: SizedBox(
-                    width: 370,
-                    height: 200,
+                    width: wi / 1.25,
+                    height: hi / 4.5,
                     child: Padding(
                       padding: const EdgeInsets.all(30.0),
                       child: Column(
@@ -103,7 +107,10 @@ class SAR extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => EEPDB(url: 'https://aec.edu.in/Academic_Regulations/1.%20AR20%20B.Tech%20Academic%20Regulations.pdf',),
+                              builder: (context) => EEPDB(
+                                url:
+                                    'https://aec.edu.in/Academic_Regulations/1.%20AR20%20B.Tech%20Academic%20Regulations.pdf',
+                              ),
                             ));
                       },
                       child: Card(
@@ -111,8 +118,8 @@ class SAR extends StatelessWidget {
                         shadowColor: Colors.black,
                         color: Colors.white,
                         child: SizedBox(
-                          width: 370,
-                          height: 200,
+                          width: wi / 1.25,
+                          height: hi / 4.5,
                           child: Padding(
                             padding: const EdgeInsets.all(30.0),
                             child: Column(
