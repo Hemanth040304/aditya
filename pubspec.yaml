@@ -34,7 +34,7 @@ dependencies:
   flutter_cached_pdfview: ^0.4.1
   flutter_launcher_icons: ^0.12.0
   url_launcher: ^6.1.10
-  video_player: null
+  video_player: ^2.4.2
 
 flutter_icons:
   android: "launcher_icon"
@@ -85,10 +85,24 @@ flutter:
     - assets/img/about.png
     - assets/img/aditya.png
     - assets/img/aec.png
-    - assets/img/cube.png
     - assets/img/aditya1.png
     - assets/img/aditya.mp4
-    - assets/img/aec_pri.pdf
+    - assets/img/PP.pdf
+    - assets/img/IIQA.pdf
+    - assets/img/SSR.pdf
+    - assets/img/technicalhub.png
+    - assets/img/DR.png
+    - assets/img/OWLCODER.png
+    - assets/img/CODEMIND.png
+    - assets/img/PS.png
+    - assets/img/TCONNECT.png
+    - assets/img/OV.mp4
+    - assets/img/TV.mp4
+    - assets/img/CV.mp4
+    - assets/img/DRV.mp4
+    - assets/img/TTV.mp4
+    - assets/img/PSV.mp4
+   
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware
     # For details regarding adding assets from package dependencies, see
@@ -113,4 +127,5 @@ flutter:
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
 dev_dependencies:
+  flick_video_player: ^0.5.0
   native_pdf_view: ^6.0.0+1

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/services.dart';
-import 'Dept.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
 import 'package:aditya/pdfView.dart';
+import 'Thub.dart';
+import 'SSR.dart';
+import 'IIQA.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,11 +24,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late var pdfUrl = 'assets/PP.pdf';
   bool _isFirstCard = false;
   bool _isSecondCard = false;
   bool _isThirdCard = false;
+  bool _isFifthCard = false;
+  bool _isFourthCard = false;
+
   final pdfController = PdfController(
-    document: PdfDocument.openAsset('assets/img/aec_pri.pdf'),
+    document: PdfDocument.openAsset('pdfUrl'),
   );
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,8 @@ class _HomePageState extends State<HomePage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          toolbarHeight: 75,
+          backgroundColor: Colors.orange[400],
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,90 +54,14 @@ class _HomePageState extends State<HomePage> {
               ),
               Image.asset(
                 'assets/img/aec.png',
-                height: 210,
-                width: 210,
-              ),
-            ],
-          ),
-        ),
-        drawerEnableOpenDragGesture: true,
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: CircleAvatar(
-                  child: Image.asset('assets/img/aditya1.png'),
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  'Home',
-                  style: TextStyle(color: Colors.blue),
-                ),
-                leading: Icon(
-                  Icons.home,
-                  color: Colors.blue,
-                ),
-                onTap: () {
-                  // Add your onTap code here
-                  print('Home ListTile was tapped!');
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Share',
-                  style: TextStyle(color: Colors.blue),
-                ),
-                leading: Icon(
-                  Icons.share,
-                  color: Colors.blue,
-                ),
-                onTap: () {
-                  // Add your onTap code here
-                  print('share ListTile was tapped!');
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Settings',
-                  style: TextStyle(color: Colors.blue),
-                ),
-                leading: Icon(
-                  Icons.settings,
-                  color: Colors.blue,
-                ),
-                onTap: () {
-                  // Add your onTap code here
-                  print('Settings ListTile was tapped!');
-                },
-              ),
-              ListTile(
-                title: Text(
-                  'Contact us',
-                  style: TextStyle(color: Colors.blue),
-                ),
-                leading: Icon(
-                  Icons.add_call,
-                  color: Colors.blue,
-                ),
-                onTap: () {
-                  // Add your onTap code here
-                  print('contact us ListTile was tapped!');
-                },
+                height: 250,
+                width: 250,
               ),
             ],
           ),
         ),
         body: ListView(padding: EdgeInsets.all(pd), children: [
           Column(children: [
-            Text(
-              'NAAC',
-              style: TextStyle(
-                color: Colors.indigo,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             SizedBox(
               height: 10,
             ),
@@ -140,6 +71,8 @@ class _HomePageState extends State<HomePage> {
                   _isFirstCard = true;
                   _isSecondCard = false;
                   _isThirdCard = false;
+                  _isFourthCard = false;
+                  _isFifthCard = false;
                 });
               },
               child: Container(
@@ -148,13 +81,16 @@ class _HomePageState extends State<HomePage> {
                   elevation: 50,
                   shadowColor: Colors.black,
                   color: _isFirstCard ? Colors.blue : Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
                   child: SizedBox(
                     width: wi / 1.25,
-                    height: hi / 2.5,
+                    height: hi / 2.75,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: [
+                          Padding(padding: EdgeInsets.all(15)),
                           Icon(
                             Icons.info,
                             size: 40,
@@ -184,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(
-                            height: 80,
+                            height: 30,
                           ),
                           SizedBox(
                             width: 125,
@@ -240,21 +176,26 @@ class _HomePageState extends State<HomePage> {
                       _isFirstCard = false;
                       _isSecondCard = true;
                       _isThirdCard = false;
+                      _isFourthCard = false;
+                      _isFifthCard = false;
                     });
                   },
                   child: Container(
                     alignment: Alignment.topCenter,
                     child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
                       elevation: 50,
                       shadowColor: Colors.black,
                       color: _isSecondCard ? Colors.orange : Colors.white,
                       child: SizedBox(
                         width: wi / 1.25,
-                        height: hi / 2.5,
+                        height: hi / 2.75,
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Column(
                             children: [
+                              Padding(padding: EdgeInsets.all(15)),
                               Icon(
                                 Icons.newspaper,
                                 size: 40,
@@ -291,7 +232,7 @@ class _HomePageState extends State<HomePage> {
 // TextStyle
                               ), // Text
                               const SizedBox(
-                                height: 80,
+                                height: 30,
                               ), // SizedBox
                               SizedBox(
                                 width: 125,
@@ -347,6 +288,8 @@ class _HomePageState extends State<HomePage> {
                         _isFirstCard = false;
                         _isSecondCard = false;
                         _isThirdCard = true;
+                        _isFourthCard = false;
+                        _isFifthCard = false;
                       });
                     },
                     child: Container(
@@ -355,15 +298,18 @@ class _HomePageState extends State<HomePage> {
                         elevation: 50,
                         shadowColor: Colors.black,
                         color: _isThirdCard ? Colors.red : Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
                         child: SizedBox(
                           width: wi / 1.25,
-                          height: hi / 2.5,
+                          height: hi / 2.75,
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(
                               children: [
+                                Padding(padding: EdgeInsets.all(15)),
                                 Icon(
-                                  Icons.apartment_sharp,
+                                  Icons.newspaper_outlined,
                                   size: 40,
                                   color:
                                       _isThirdCard ? Colors.white : Colors.red,
@@ -372,7 +318,7 @@ class _HomePageState extends State<HomePage> {
                                   height: 10,
                                 ), // SizedBox
                                 Text(
-                                  'Departments',
+                                  'SSR',
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: _isThirdCard
@@ -387,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                                   height: 20,
                                 ), // SizedBox
                                 Text(
-                                  'Departments',
+                                  'SSR',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: _isThirdCard
@@ -397,7 +343,7 @@ class _HomePageState extends State<HomePage> {
 // TextStyle
                                 ), // Text
                                 const SizedBox(
-                                  height: 80,
+                                  height: 30,
                                 ), // SizedBox
                                 SizedBox(
                                   width: 125,
@@ -406,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => DeptPage(),
+                                          builder: (context) => MySSR(),
                                         ),
                                       );
                                     },
@@ -432,6 +378,234 @@ class _HomePageState extends State<HomePage> {
                                           Icons.arrow_right_outlined,
                                           color: _isThirdCard
                                               ? Colors.red
+                                              : Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isFirstCard = false;
+                        _isSecondCard = false;
+                        _isThirdCard = false;
+                        _isFourthCard = false;
+                        _isFifthCard = true;
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Card(
+                        elevation: 50,
+                        shadowColor: Colors.black,
+                        color: _isFifthCard ? Colors.purple : Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: SizedBox(
+                          width: wi / 1.25,
+                          height: hi / 2.75,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Padding(padding: EdgeInsets.all(15)),
+                                Icon(
+                                  Icons.newspaper_outlined,
+                                  size: 40,
+                                  color: _isFifthCard
+                                      ? Colors.white
+                                      : Colors.purple,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ), // SizedBox
+                                Text(
+                                  'IIQA',
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: _isFifthCard
+                                        ? Colors.white
+                                        : Colors.black54,
+                                    fontWeight: FontWeight.w500,
+                                  ), // TextStyle
+                                ),
+
+// Text
+                                const SizedBox(
+                                  height: 20,
+                                ), // SizedBox
+                                Text(
+                                  'IIQA',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: _isFifthCard
+                                        ? Colors.white
+                                        : Colors.black45,
+                                  ),
+// TextStyle
+                                ), // Text
+                                const SizedBox(
+                                  height: 30,
+                                ), // SizedBox
+                                SizedBox(
+                                  width: 125,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => MyIIQA(),
+                                        ),
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(_isFifthCard
+                                              ? Colors.white
+                                              : Colors.purple),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Read More',
+                                          style: TextStyle(
+                                            color: _isFifthCard
+                                                ? Colors.purple
+                                                : Colors.white,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_right_outlined,
+                                          color: _isFifthCard
+                                              ? Colors.purple
+                                              : Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isFirstCard = false;
+                        _isSecondCard = false;
+                        _isThirdCard = false;
+                        _isFourthCard = true;
+                        _isFifthCard = false;
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      child: Card(
+                        elevation: 50,
+                        shadowColor: Colors.black,
+                        color: _isFourthCard ? Colors.green : Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: SizedBox(
+                          width: wi / 1.25,
+                          height: hi / 2.75,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Padding(padding: EdgeInsets.all(15)),
+                                Icon(
+                                  Icons.model_training_outlined,
+                                  size: 40,
+                                  color: _isFourthCard
+                                      ? Colors.white
+                                      : Colors.green,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ), // SizedBox
+                                Text(
+                                  'Training and Placement',
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: _isFourthCard
+                                        ? Colors.white
+                                        : Colors.black54,
+                                    fontWeight: FontWeight.w500,
+                                  ), // TextStyle
+                                ),
+
+// Text
+                                const SizedBox(
+                                  height: 20,
+                                ), // SizedBox
+                                Text(
+                                  'Training and Placement',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: _isFourthCard
+                                        ? Colors.white
+                                        : Colors.black45,
+                                  ),
+// TextStyle
+                                ), // Text
+                                const SizedBox(
+                                  height: 30,
+                                ), // SizedBox
+                                SizedBox(
+                                  width: 125,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => MyHub(),
+                                        ),
+                                      );
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                        _isFourthCard
+                                            ? Colors.white
+                                            : Colors.green,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Read More',
+                                          style: TextStyle(
+                                            color: _isFourthCard
+                                                ? Colors.green
+                                                : Colors.white,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_right_outlined,
+                                          color: _isFourthCard
+                                              ? Colors.green
                                               : Colors.white,
                                         ),
                                       ],
@@ -482,7 +656,9 @@ class _VideoAppState extends State<VideoApp> {
       title: 'ABOUT AEC',
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          centerTitle: true,
+          toolbarHeight: 75,
+          backgroundColor: Colors.orange[400],
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
@@ -496,8 +672,8 @@ class _VideoAppState extends State<VideoApp> {
               ),
               Image.asset(
                 'assets/img/aec.png',
-                height: 210,
-                width: 210,
+                height: 250,
+                width: 250,
               ),
             ],
           ),
