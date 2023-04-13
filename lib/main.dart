@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/services.dart';
 import 'Dept.dart';
-import 'Principal.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
 import 'package:aditya/pdfView.dart';
 
@@ -125,7 +124,7 @@ class _HomePageState extends State<HomePage> {
         body: ListView(padding: EdgeInsets.all(pd), children: [
           Column(children: [
             Text(
-              'NBA',
+              'NAAC',
               style: TextStyle(
                 color: Colors.indigo,
                 fontSize: 20,
