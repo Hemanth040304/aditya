@@ -209,6 +209,7 @@ class _MyHubState extends State<MyHub> {
                             Image(
                               image: AssetImage('assets/img/CODEMIND.png'),
                               alignment: Alignment.center,
+                              height: 125,
                             ),
                           ],
                         ), //Column
